@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Alumnos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Carrusel de imágenes */
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+            overflow: hidden;
+        }
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .carousel-images img {
+            width:100%;
+            border-radius: 10px;
+        }
+        .carousel-buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .carousel-button {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<header>
+    <div class="logo">
+        <img src="static/image/web-logo.png" alt="Universidad UTSA" class="logo">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/index">Inicio</a></li>
+            <li><a href="/listar">ABM de Alumnos</a></li>
+            <li><a href="/listarinst">ABM de Instructores</a></li>
+            <li><a href="/listarcursos">ABM de Cursos</a></li>
+            <li><a href="/listarcursada">ABM de Cursada</a></li>
+            <li><a class="itemBuscar" href="/buscador">Buscar Alumno</a></li>
+        </ul>
+    </nav>
+</header>
+<body class="alumnos">
+
+    <!-- Carrusel de imágenes -->
+    <div class="carousel">
+        <div class="carousel-images">
+            <img src="static/image/image1.jpg" alt="Image 1">
+            <img src="static/image/image2.jpg" alt="Image 2">
+            <img src="static/image/image3.jpg" alt="Image 3">
+            <img src="static/image/image4.jpg" alt="Image 4">
+            <img src="static/image/image5.jpg" alt="Image 5">
+            <img src="static/image/image6.jpg" alt="Image 6">
+            <img src="static/image/image7.jpg" alt="Image 7">
+            <img src="static/image/image8.jpg" alt="Image 8">
+            <img src="static/image/image9.jpg" alt="Image 9">
+            <img src="static/image/image10.jpg" alt="Image 10">
+        </div>
+        <div class="carousel-buttons">
+            <button class="carousel-button" onclick="prevSlide()">&#10094;</button>
+            <button class="carousel-button" onclick="nextSlide()">&#10095;</button>
+        </div>
+    </div>
+
+    <div class="titulos">
+        <h1>ALTA, BAJA Y MODIFICACIONES DE ALUMNOS</h1>
+    </div>
+    <div class="mensajeBusqueda">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Id Direc.</th>
+                <th>Calle</th>
+                <th>Numero</th>
+                <th>Id Educ.n</th>
+                <th>Educ. Maxima</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for da in datos %}
+            <tr>
+                <td>{{ da.0 }}</td>
+                <td>{{ da.1 }}</td>
+                <td>{{ da.2 }}</td>
+                <td>{{ da.3 }}</td>
+                <td>{{ da.4 }}</td>
+                <td>{{ da.5 }}</td>
+                <td>{{ da.6 }}</td>
+                <td>{{ da.7 }}</td>
+                <td><a class="btnEditar" href="/obtener/{{ da.0 }}">Editar</a></td>
+                <td><a class="btnEliminar" href="#" onclick="confirmarEliminar('{{ da.0 }}')">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div id="boton-agregar">
+        <a class="btn" href="/agregar">Agregar</a>
+        <br><br>
+        <a class="btnVolver" href="/index">VOLVER</a>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-images img');
+
+        function showSlide(index) {
+            if (index >= slides.length) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = slides.length - 1;
+            } else {
+                currentSlide = index;
+            }
+            const offset = -currentSlide * 100;
+            document.querySelector('.carousel-images').style.transform = `translateX(${offset}%)`;
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        setInterval(nextSlide, 3000); // Cambia de imagen automáticamente cada 3 segundos
+
+        function confirmarEliminar(dni) {
+            if (confirm('¿Estás seguro de que deseas eliminar este registro?')) {
+                window.location.href = '/eliminar/' + dni;
+            }
+        }
+    </script>
+</body>
+{% extends "footer.html" %}
+</html>

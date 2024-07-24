@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busqueda de Alumnos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<header>
+    <div class="logo">
+        <img src="static/image/web-logo.png" alt="Codo a Codo" class="logo">
+    </div>
+    <nav>
+
+        <ul>
+            <li><a href="/index">Inicio</a></li>
+            <li><a href="/listar">ABM de Alumnos</a></li>
+            <li><a href="/listarinst">ABM de Instructores</a></li>
+             <li><a href="/listarcursos">ABM de Cursos</a></li>
+             <li><a href="/listarcursada">ABM de Cursada</a></li>
+            
+        </ul>
+    </nav>
+</header>
+<body>
+    <div class="titulos">
+        <h1>BUSCAR ALUMNOS</h1>
+    </div>
+      <!---->
+      <div class = "buscadores">
+            <div class="buscaDni">
+                <form action = "/buscarDni" method = "POST">
+                    <label for = "buscar">Buscar por Dni:</label>
+                    <input type="search" id="dni"name="dni">
+                    <input type="submit" value="buscarDni">
+                </form>
+                </div>
+
+            <!---->
+            <div class="buscaNombre">
+            <form action = "/buscarNombre" method = "POST">
+                <label for = "buscar">Buscar por Nombre:</label>
+                <input type="search" id="nombre"name="nombre">
+                <input type="submit" value="buscar">
+            </form>
+            </div>
+            <!---->
+            <div class="buscaApellido">
+            <form action = "/buscarApellido" method = "POST">
+                <label for = "buscarApellido">Buscar por Apellido:</label>
+                <input type="search" id="apellido"name="apellido">
+                <input type="submit" value="buscaApellido">
+            </form>
+        </div>        
+</div>
+
+    
+    <div class="mensajeBusqueda">
+    {%with messages = get_flashed_messages()%}
+    {%if messages%}
+    {%for messages in messages%}
+    {{messages}}
+    {%endfor%}
+    {%endif%}
+    {% endwith %}
+    </div> 
+
+    <table>
+        <thead>
+            <tr>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Id Direc.</th>
+                <th>Calle</th>
+                <th>Numero</th>
+                <th>Id Educ.n</th>
+                <th>Educ. Maxima</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for da in datos %}
+            <tr>
+                <td>{{da.0}}</td>
+                <td>{{da.1}}</td>
+                <td>{{da.2}}</td>
+                <td>{{da.3}}</td>
+                <td>{{da.4}}</td>
+                <td>{{da.5}}</td>
+                <td>{{da.6}}</td>
+                <td>{{da.7}}</td>
+                
+                <td><a class="btnEditar" href="/obtener/{{da.0}}">Editar</a></td>
+                
+                
+                <td><a class="btnEliminar" href="#" onclick="confirmarEliminar('{{da.0}}')">Eliminar</a></td>
+                
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class = "botones_volver_agregar">
+        <div id="boton-agregar">
+            <a class="btn" href="/agregar">Agregar</a>
+            <br><br>
+            <a class="btnVolver" href="/index">VOLVER</a>
+        </div>
+    
+
+    <script>
+        function confirmarEliminar(dni) {
+            if (confirm('¿Estás seguro de que deseas eliminar este registro?')) {
+                window.location.href = '/eliminar/' + dni;
+            }
+        }
+    </script>
+    </div>  
+</body>
+
+
+    {%extends"footer.html"%}
+</html>
+

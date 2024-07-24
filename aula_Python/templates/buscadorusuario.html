@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busqueda de Instructores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<header>
+    <div class="logo">
+        <img src="static/image/web-logo.png" alt="Codo a Codo" class="logo">
+    </div>
+    <nav>
+
+        <ul>
+            <li><a href="/index">Inicio</a></li>
+            
+                <li><a href="/listar">ABM de Alumnos</a></li>
+                <li><a href="/listarinst">ABM de Instructores</a></li>
+                <li><a href="/listarcursos">ABM de Cursos</a></li>
+                <li><a href="/listarcursada">ABM de Cursada</a></li>
+            
+            
+        </ul>
+    </nav>
+</header>
+<body>
+    <div class="titulos">
+        <h1>BUSCAR INSTRUCTOR</h1>
+    </div>
+      <!---->
+      <div class = "buscadores">
+            <div class="buscaId">
+                <form action = "/buscaridUsuario" method = "POST">
+                    <label for = "buscaridUsuario">Buscar por Id:</label>
+                    <input type="search" id="buscaridUsuario"name="buscaridUsuario">
+                    <input type="submit" value="buscaridUsuario">
+                </form>
+                </div>
+
+            <!---->
+            <div class="buscaNombre">
+            <form action = "/buscarUsarname" method = "POST">
+                <label for = "buscarUsarname">Buscar por nombre de Usuario:</label>
+                <input type="search" id="buscarUsarname"name="buscarUsarname">
+                <input type="submit" value="buscarUsarname">
+            </form>
+            </div>
+            <!---->
+            <div class="buscaApellido">
+            <form action = "/buscarEmail" method = "POST">
+                <label for = "buscarEmail">Buscar por Email:</label>
+                <input type="search" id="email"name="email">
+                <input type="submit" value="buscarEmail">
+            </form>
+        </div>  
+</div>
+
+    
+    <div class="mensajeBusqueda">
+    {%with messages = get_flashed_messages()%}
+    {%if messages%}
+    {%for messages in messages%}
+    {{messages}}
+    {%endfor%}
+    {%endif%}
+    {% endwith %}
+    </div> 
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Usarname</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Role</th>
+                
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for da in datosInst %}
+            <tr>
+                <td>{{da.0}}</td>
+                <td>{{da.1}}</td>
+                <td>{{da.2}}</td>
+                <td>{{da.3}}</td>
+                <td>{{da.4}}</td>
+                
+                
+                <td><a class="btnEditar" href="/obtenerusuario/{{da.0}}">Editar</a></td>
+                
+                
+                <td><a class="btnEliminar" href="#" onclick="confirmarEliminar('{{da.0}}')">Eliminar</a></td>
+                
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div id="boton-agregar">
+        <a class="btn" href="/agregarinst">Agregar</a>
+        <br><br>
+         <a class="btnVolver" href="/index">VOLVER</a>
+    </div>
+    
+
+    <script>
+        function confirmarEliminar(dni) {
+            if (confirm('¿Estás seguro de que deseas eliminar este registro?')) {
+                window.location.href = '/eliminar/' + dni;
+            }
+        }
+    </script>
+</body>
+
+ 
+    {%extends"footer.html"%}
+
+</html>
+

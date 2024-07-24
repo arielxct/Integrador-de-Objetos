@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+
+      
+</head>
+
+
+
+<body class="editar_alumno">
+  
+
+   <header>
+    <div class="logo">
+       
+        </div>
+    <nav>
+
+        <ul>
+            <li><a href="/index">Inicio</a></li>
+            <li><a href="/listar">ABM de Alumnos</a></li>
+            <li><a href="/listarinst">ABM de Instructores</a></li>
+            <li><a href="/listarcursos">ABM de Cursos</a></li>
+            <li><a href="/listarcursada">ABM de Cursada</a></li>
+            
+            <li><a href="/buscador">Buscar Alumnos</a></li>
+        </ul>
+    </nav>
+</header>
+
+
+    <div class="titulos">
+        <h1>EDITAR ALUMNOS</h1>
+    </div>
+    <form action="/actualizar/{{alumnos.0}}" method="POST">
+        <!-- faltaría agregar la ruta en action "/agregar" -->
+        <label for="fname">DNI:</label><br>
+        <input type="text" id="dni" name="dni" value="{{alumnos.0}}" maxlength="8" required><br><br>
+        <label for="lname">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre" value="{{alumnos.1}}" maxlength="20" required><br><br>
+        <label for="lname">Apellido:</label><br>
+        <input type="text" id="apellido" name="apellido" value="{{alumnos.2}}" maxlength="20" required><br><br>
+       <!-- DIRECCION-->
+        <label for="lname">Dirección:</label><br>
+        <select name="direccion" id="">
+        <option value="{{alumnos.3}}">Selecciones Direccion</option> 
+        {% for di in direccion%}
+        <option value="{{di.0}}"> {{di.0}} {{di.1}}
+        {% endfor %}  
+        <!--
+       <input type="text" id="direccion" name="direccion" value="" ><br><br>
+        -->
+        
+       <input type="text" id="direccion" name="direccion"  {% for ca in lacalle%} value="{{ca.0}} - {{ca.1}} {{ca.2}}" {% endfor %} ><br><br>
+        
+       <!-- EDUCACION-->
+        <label for="lname">Educación:</label><br>
+        <select name="educacion" id="">
+            <option value="{{alumnos.4}}">Seleccione  Educacion</option> 
+            {% for ed in educacion%}
+            <option value="{{ed.0}}"> {{ed.0}} {{ed.1}}
+            {% endfor %}  
+            
+
+        <input type="text" id="educacion" name="educacion" {% for edu in laEduca%}value="{{edu.1}} - {{edu.2}}"{% endfor %}><br><br>
+        
+         <!-- BOTON ENVIAR-->
+        <input class="boton" type="submit" value="Actualizar">
+        <br><br>
+        <a class="btn" href="/index">VOLVER</a>
+    </form>
+    
+       
+</body>
+ 
+    {%extends"footer.html"%}
+   
+
+</html>

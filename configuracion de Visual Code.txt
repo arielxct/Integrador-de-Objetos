@@ -1,0 +1,67 @@
+Para configurar Flask-MySQL en tu aplicación de Flask y conectarla a una 
+base de datos MySQL, sigue estos pasos:
+
+Instala Flask-MySQL: Asegúrate de tener instalado el paquete flask-mysql. 
+Si no lo tienes, puedes instalarlo ejecutando 
+el siguiente comando en la terminal:
+
+pip install flask-mysql  <<<<<<<<<<<<<<<<=============
+
+mporta las bibliotecas necesarias: En tu archivo de aplicación Flask 
+(generalmente llamado app.py o similar), 
+importa las siguientes bibliotecas:
+
+from flask import Flask
+from flask_mysqldb import MySQL
+
+Configura la conexión a la base de datos: Configura los parámetros
+ de conexión a tu base de datos MySQL. Por ejemplo:
+
+app = Flask(__name__)
+app.config["MYSQL_HOST"] = "localhost"
+app.config["MYSQL_USER"] = "root"
+app.config["MYSQL_PASSWORD"] = "tu_contraseña"
+app.config["MYSQL_DB"] = "nombre_de_la_base_de_datos"
+
+Ejemplo de uso: Puedes usar la conexión a la base de datos en tus rutas o vistas. 
+Por ejemplo, para obtener todos los usuarios de la tabla usuarios:
+
+@app.route("/")
+def obtener_usuarios():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT id, nombre FROM usuarios")
+    usuarios = cur.fetchall()
+    cur.close()
+    return str(usuarios)  # Puedes adaptar esto según tus necesidades
+
+Ejecuta tu aplicación: Finalmente, ejecuta tu aplicación Flask:
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+---------------------------------------------------------------------------------
+Para configurar flask_bcrypt en un proyecto Flask en Visual Studio Code, 
+sigue estos pasos:
+
+Instala Flask-Bcrypt:
+Asegúrate de tener Flask instalado en tu entorno de desarrollo. 
+Si no lo tienes, puedes instalarlo con pip install flask.
+Luego, instala Flask-Bcrypt con:
+
+ pip install flask-bcrypt.  <<<<<<<<<<<<=========
+
+Importa y configura Flask-Bcrypt:
+En tu archivo de aplicación Flask (generalmente app.py o similar),
+ importa la extensión:
+
+from flask import Flask
+from flask_bcrypt import Bcrypt
+
+app = Flask(__name__)
+bcrypt = Bcrypt(app)
+
+=================================================
+
+
+
+

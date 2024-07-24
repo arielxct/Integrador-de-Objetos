@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universidad Tecnológica de Software Avanzado (UTSA) </title>
+   
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <style>
+        .titulosIndex {
+            color: #cc008f;
+            text-align: center;
+            border: black;
+            border-radius: 5%;
+            margin-top: 0%;
+            margin-bottom: 0%;
+            font-size: 1.2em;
+        }
+    </style>
+    
+</head>
+<body>
+    <header>
+        <div class="logo">
+            
+            
+            <img src="static/image/web-logo.png" alt="Logo UTSA" class="logo">
+        </div>
+        <nav>
+
+            <ul>
+                <li><a href="/listar">ABM de Alumnos</a></li>
+                <li><a href="/listarinst">ABM de Instructores</a></li>
+                <li><a href="/listarcursos">ABM de Cursos</a></li>
+                <li><a href="/listarcursada">ABM de Cursada</a></li>
+                <li><a href="/listarusuarios">Administrador</a></li>
+               
+                
+                
+            
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="titulosIndex">
+            <h1>Universidad Tecnológica de Software Avanzado (UTSA)</h1>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const titleElement = document.querySelector('.titulosIndex');
+                const colors = ['#cc008f', '#ff5733', '#33ff57', '#3357ff', '#ff33a1'];
+                let colorIndex = 0;
+    
+                setInterval(() => {
+                    colorIndex = (colorIndex + 1) % colors.length;
+                    titleElement.style.color = colors[colorIndex];
+                }, 2000); // Cambia el color cada 2 segundos (2000 ms)
+            });
+        </script>
+
+        <!-- SECCION  XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX-->
+<section class="tres_imagenes">
+    
+   
+
+    <div class="tres_imagenes">
+       <div class="row alineo_tres_imagenes">
+            <div class="col-12 tres_fotos">
+                
+                        <!-- agrego tres card -->
+                <div class="card-group">
+                        <!-- card 1 -->
+                    <div class="card">
+                    <img src="/static/image/steve2.jpg" class="card-img-top" alt="Foto de Steve Jobs">
+                    <div class="card-body alineo_botes_y_texto">
+                        
+                        <h5 class="card-title">Steve Jobs</h5>
+                        <p class="card-text">Steven Paul «Steve» Jobs (San Francisco, 24 de febrero de 1955-Palo Alto, 5 de octubre de 2011)8​9​10​11​ fue un empresario, diseñador industrial, magnate empresarial, propietario de medios e inversor estadounidense. Fue cofundador y presidente ejecutivo de Apple12​ y máximo accionista individual de The Walt Disney Company.13​</p>
+                        <p class="card-text"><small class="text-body-secondary"></small></p>
+                    </div>
+                    </div>
+                        <!-- card 2 -->
+                    <div class="card">
+                    <img src="/static/image/bill.jpg" class="card-img-top" alt="Foto de Bill Gates">
+                    <div class="card-body alineo_botes_y_texto">
+                        
+                        <h5 class="card-title">Bill Gates</h5>
+                        <p class="card-text">William Henry Gates III (Seattle, Washington; 28 de octubre de 1955), conocido como Bill Gates, es un magnate empresarial, desarrollador de software, inversor, autor y filántropo estadounidense. Es cofundador de Microsoft, junto con su difunto amigo de la infancia Paul Allen. Durante su carrera en Microsoft.Su fortuna u$ 129 mill.</p>
+                        <p class="card-text"><small class="text-body-secondary"></small></p>
+                          
+                    </div>
+                    </div>
+                        <!-- card 3-->
+                    <div class="card">
+                    <img src="/static/image/elonmusk.png" class="card-img-top" alt="Foto de Ada Lovelace">
+                    <div class="card-body alineo_botes_y_texto">
+                       
+                        <h5 class="card-title">Elon Musk</h5>
+                        <p class="card-text">Elon Reeve Musk (Pretoria, 28 de junio de 1971), conocido como Elon Musk, es un empresario, inversor y magnate sudafricano que también posee las nacionalidades canadiense y estadounidense. Es el fundador, consejero delegado e ingeniero en jefe de SpaceX; inversor ángel, director general y arquitecto de productos de Tesla, Inc.</p>
+                        <p class="card-text"><small class="text-body-secondary"></small></p>
+                    </div>
+                    </div>
+
+                </div>
+
+            <!-- fin de las card -->
+
+            </div>
+        </div>
+    </div>  
+
+
+       
+    
+</section>
+     
+    </main>
+    
+    {%extends"footer.html"%}
+    
+   
+</body>
+</html>

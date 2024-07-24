@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+        <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Lista de Instructores</title>
+            <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        </head>
+        <header>
+            <div class="logo">
+                <img src="static/image/web-logo.png" alt="Codo a Codo" class="logo">
+            </div>
+            <nav>
+        
+                <ul>
+                    <li><a href="/index">Inicio</a></li>
+                    <li><a href="/listar">ABM de Alumnos</a></li>
+                <li><a href="/listarinst">ABM de Instructores</a></li>
+                <li><a href="/listarcursos">ABM de Cursos</a></li>
+                <li><a href="/listarcursada">ABM de Cursada</a></li>
+                      
+                    <li><a class="itemBuscar" href="/buscadorcursos">Buscar Cursos</a></li>
+                </ul>
+            </nav>
+        </header>
+        <body class = "listar_cursos">
+             
+        
+        
+            <div class="titulos">
+                <h1>ALTA, BAJA Y MODIFICACIONES DE  CURSOS</h1>
+            </div>
+            <div class="mensajeBusqueda">
+            {%with messages = get_flashed_messages()%}
+            {%if messages%}
+            {%for messages in messages%}
+            {{messages}}
+            {%endfor%}
+            {%endif%}
+            {% endwith %}
+            </div> 
+            <div class = "lista_instructores">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
+                        
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for da in datosCursos %}
+                    <tr>
+                        <td>{{da.0}}</td>
+                        <td>{{da.1}}</td>
+                        <td>{{da.2}}</td>
+                         
+                        
+                        
+                        <td><a class="btnEditar" href="/obtenercursos/{{da.0}}">Editar</a></td>
+                        
+                        
+                        <td><a class="btnEliminar" href="#" onclick="confirmarEliminar('{{da.0}}')">Eliminar</a></td>
+                        
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+           </div> 
+            <div id="boton-agregar">
+                <a class="btn" href="/agregarcursos">Agregar</a>
+                <br><br>
+                 <a class="btnVolver" href="/index">VOLVER</a>
+        
+            </div>
+        
+            <script>
+                function confirmarEliminar(codigo) {
+                    if (confirm('¿Estás seguro de que deseas eliminar este registro?')) {
+                        window.location.href = '/eliminarcursos/' + codigo;
+                    }
+                }
+            </script>
+        </body>
+        
+         
+    {%extends"footer.html"%}
+        
+        </html>
+
+       

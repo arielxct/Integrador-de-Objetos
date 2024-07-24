@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Usuarios</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<header>
+    <div class="logo">
+        <img src="static/image/web-logo.png" alt="Universidad UTSA" class="logo">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/index">Inicio</a></li>
+            <li><a href="/listar">ABM de Alumnos</a></li>
+            <li><a href="/listarinst">ABM de Instructores</a></li>
+            <li><a href="/listarcursos">ABM de Cursos</a></li>
+            <li><a href="/listarcursada">ABM de Cursada</a></li>
+            <li><a href="/listarusuarios">ABM de Usuarios</a></li>
+            <!--
+            <li><a class="itemBuscarUsuario" href="/buscadorUsuario">Buscar Usuario</a></li>
+            -->
+        </ul>
+    </nav>
+</header>
+<body class="usuarios">
+    <div class="titulos">
+        <h1>ALTA, BAJA Y MODIFICACIONES DE USUARIOS</h1>
+    </div>
+    <div class="mensajeBusqueda">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Formulario de búsqueda -->
+    <form method="POST" action="/buscarusuario">
+        <input type="text" name="search_query" placeholder="Buscar por ID, Username, Email o Role" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th><a href="{{ url_for('listarusuarios', sort_by='id') }}">ID Usuario</a></th>
+                <th><a href="{{ url_for('listarusuarios', sort_by='username') }}">Nombre de Usuario</a></th>
+                <th><a href="{{ url_for('listarusuarios', sort_by='email') }}">Email</a></th>
+                <th>Password</th>
+                <th><a href="{{ url_for('listarusuarios', sort_by='role') }}">Role</a></th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for da in datos_usuarios %}
+            <tr>
+                <td>{{ da[0] }}</td>
+                <td>{{ da[1] }}</td>
+                <td>{{ da[2] }}</td>
+                <td>{{ da[3] }}</td>
+                <td>{{ da[4] }}</td>
+                <td><a class="btnEditar" href="/obtenerusuario/{{ da[0] }}">Editar</a></td>
+                <td><a class="btnEliminar" href="#" onclick="confirmarEliminarUsuario('{{ da[0] }}')">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div id="boton-agregar">
+        <a class="btn" href="/agregar">Agregar</a>
+        <br><br>
+        <a class="btnVolver" href="/admin">VOLVER</a>
+    </div>
+    <script>
+        function confirmarEliminarUsuario(id) {
+            if (confirm('¿Estás seguro de que deseas eliminar este registro?')) {
+                window.location.href = '/eliminarusuario/' + id;
+            }
+        }
+    </script>
+</body>
+{% extends "footer.html" %}
+</html>

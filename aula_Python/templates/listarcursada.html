@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Cursadas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<header>
+    <div class="logo">
+        <img src="static/image/web-logo.png" alt="Codo a Codo" class="logo">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/index">Inicio</a></li>
+            <li><a href="/listar">ABM de Alumnos</a></li>
+            <li><a href="/listarinst">ABM de Instructores</a></li>
+            <li><a href="/listarcursos">ABM de Cursos</a></li>
+            <li><a href="/listarcursada">ABM de Cursada</a></li>
+            <li><a class="itemBuscar" href="/buscadorcursada">Buscar Cursada</a></li>
+        </ul>
+    </nav>
+</header>
+<body class="listar_cursada">
+    <div class="titulos">
+        <h1>ALTA, BAJA Y MODIFICACIONES DE CURSADA</h1>
+    </div>
+    <div class="mensajeBusqueda">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <div class="ordeno_cursada">
+        <label for="order_by">Ordenar por:</label>
+        <select id="order_by" name="order_by" onchange="ordenar()">
+            <option value="cursada.id_cursada" {% if order_by == 'cursada.id_cursada' %}selected{% endif %}>ID Cursada</option>
+            <option value="cursos.codigo" {% if order_by == 'cursos.codigo' %}selected{% endif %}>Código Curso</option>
+            <option value="instructores.dni" {% if order_by == 'instructores.dni' %}selected{% endif %}>DNI Instructor</option>
+            <option value="alumnos.dni" {% if order_by == 'alumnos.dni' %}selected{% endif %}>DNI Alumno</option>
+        </select>
+    </div>
+    <div class="lista_instructores">
+        <table>
+            <thead>
+                <tr>
+                    <th>Id Cursada</th>
+                    <th>Id Curso</th>
+                    <th>Nombre Curso</th>
+                    <th>DNI Instructor</th>
+                    <th>Nombre Instructor</th>
+                    <th>Apellido Instructor</th>
+                    <th>DNI Alumno</th>
+                    <th>Nombre Alumno</th>
+                    <th>Apellido Alumno</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for da in datosCursada %}
+                <tr>
+                    <td>{{ da[0] }}</td>
+                    <td>{{ da[1] }}</td>
+                    <td>{{ da[2] }}</td>
+                    <td>{{ da[3] }}</td>
+                    <td>{{ da[4] }}</td>
+                    <td>{{ da[5] }}</td>
+                    <td>{{ da[6] }}</td>
+                    <td>{{ da[7] }}</td>
+                    <td>{{ da[8] }}</td>
+                    <td><a class="btnEditar" href="/obtenercursada/{{ da[0] }}">Editar</a></td>
+                    <td><a class="btnEliminar" href="#" onclick="confirmarEliminar('{{ da[0] }}')">Eliminar</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div id="boton-agregar">
+        <a class="btn" href="/agregarcursada">Agregar</a>
+        <br><br>
+        <a class="btnVolver" href="/index">VOLVER</a>
+    </div>
+    <script>
+        function confirmarEliminar(codigo) {
+            if (confirm('¿Estás seguro de que deseas eliminar este registro?')) {
+                window.location.href = '/eliminarcursada/' + codigo;
+            }
+        }
+
+        function ordenar() {
+            const order_by = document.getElementById('order_by').value;
+            window.location.href = '/listarcursada?order_by=' + order_by;
+        }
+    </script>
+</body>
+{% extends "footer.html" %}
+</html>

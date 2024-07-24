@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universidad Tecnológica de Software Avanzado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Universidad Tecnológica de Software Avanzado</h1>
+        <nav>
+            <ul class="menu">
+                <li><a href="#">Alumnos</a>
+                    <ul class="submenu">
+                        <li><a href="{{ url_for('listar') }}">Listar</a></li>
+                        <li><a href="{{ url_for('agregar') }}">Agregar</a></li>
+                        <li><a href="{{ url_for('obtenerxx') }}">Editar NO</a></li>
+                        <li><a href="{{ url_for('baja_alumnos') }}">Baja NO</a></li>
+                        <li><a href="{{ url_for('buscador') }}">Buscar</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Instructores</a>
+                    <ul class="submenu">
+                        <li><a href="{{ url_for('listar_instructores') }}">Listar</a></li>
+                        <li><a href="{{ url_for('agregar_instructores') }}">Agregar</a></li>
+                        <li><a href="{{ url_for('editar_instructores') }}">Editar</a></li>
+                        <li><a href="{{ url_for('baja_instructores') }}">Baja</a></li>
+                        <li><a href="{{ url_for('buscar_instructores') }}">Buscar</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Cursos</a>
+                    <ul class="submenu">
+                        <li><a href="{{ url_for('listar_cursos') }}">Listar</a></li>
+                        <li><a href="{{ url_for('agregar_cursos') }}">Agregar</a></li>
+                        <li><a href="{{ url_for('editar_cursos') }}">Editar</a></li>
+                        <li><a href="{{ url_for('baja_cursos') }}">Baja</a></li>
+                        <li><a href="{{ url_for('buscar_cursos') }}">Buscar</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+   
+</body>
+ <!--
+    <footer>
+        <p>&copy; 2024 Universidad Tecnológica de Software Avanzado (UTSA). Todos los derechos reservados.</p>
+        
+    </footer>
+    -->
+    {%extends"footer.html"%}
+</html>

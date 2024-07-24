@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+
+
+<body>
+    
+    <div class="titulos">
+        <h1>AGREGAR  INSTRUCTORES</h1>
+    </div>
+
+    <form action="" method="POST">
+        <!-- faltaría agregar la ruta en action "/agregar" -->
+        <label for="fname">DNI:</label><br>
+        <input type="text" id="dni" name="dni" value="" maxlength="8" required><br><br>
+        <label for="lname">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre" value="" maxlength="20" required><br><br>
+        <label for="lname">Apellido:</label><br>
+        <input type="text" id="apellido" name="apellido" value="" maxlength="20" required><br><br>
+        
+        <!-- DIRECCION-->
+        <label for="lname">Dirección:</label><br>
+        <select name="direccion" id="">
+        <option value="">Seleccione direccion</option>
+        {% for di in direccionInst%}
+        <option value="{{di.0}}"> {{di.0}} {{di.1}}
+        {% endfor %}  
+        
+        <input type="text" id="xxdireccion" name="direccion" value="" ><br><br>
+        
+        <!-- EDUCACION-->
+        <label for="lname">Educacion:</label><br>
+        <select name="educacion" id="">
+        <option value="">Seleccione educacion</option>
+        {% for ed in educacionInst%}
+        <option value="{{ed.0}}"> {{ed.0}} {{ed.1}}
+        {% endfor %}
+         
+        <input type="text" id="xxeducacion" name="educacion" value="" ><br><br>
+        
+        
+        
+
+        <input class="boton" type="submit" value="Agregar">
+        <br><br>
+        <a class="btn" href="/index">VOLVER</a>
+    </form>
+</body>
+ 
+    {%extends"footer.html"%}
+</html>

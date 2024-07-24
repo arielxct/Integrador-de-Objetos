@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Cursada</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+    <header>
+        
+        <nav>
+
+            <ul>
+            <li><a href="/index">Inicio</a></li>
+            <li><a href="/listar">ABM de Alumnos</a></li>
+            <li><a href="/listarinst">ABM de Instructores</a></li>
+            <li><a href="/listarcursos">ABM de Cursos</a></li>
+            <li><a href="/listarcursada">ABM de Cursada</a></li>
+                             
+            </ul>
+        </nav>
+    </header>
+<body  class="editar_cursada">
+    <div class="titulos">
+        <h1>EDITAR CURSADA</h1>
+    </div>
+    <form action="/actualizarcursada/{{cursada.0}}" method="POST">
+        <!-- faltaría agregar la ruta en action "/agregar" -->
+        <label for="fname">Id Cursada:</label><br>
+        <input type="text" id="id_cursada" name="id_cursada" value="{{cursada.0}}" maxlength="11" required><br><br>
+        
+        <!--  Curso -->
+        <label for="lname">Id Curso:</label><br>
+        <select name="curso" id="cursoSelect">
+         <option value="{{ cursada[1] }}">Seleccione el Curso</option> 
+
+            {% for elcurs in elcurso %}
+            <option value="{{ elcurs[0] }}"> {{ elcurs[0] }} - {{ elcurs[1] }} {{ elcurs[2] }}</option>
+            {% endfor %}  
+
+        </select>
+
+<input type="text" id="curso" name="curso" value="{% for ca in datoCurso %}{{ ca[0] }} - {{ ca[1] }} {{ ca[2] }}{% endfor %}"><br><br>
+
+
+        
+         <!--  Instructor -->
+         <label for="lname">Instructor:</label><br>
+         <select name="instructor" id="instructorSelect">
+             <option value="{{ cursada[2] }}">Seleccione el Instructor</option> 
+         
+             {% for inst in instructor %}
+             <option value="{{ inst[0] }}"> {{ inst[0] }} - {{ inst[1] }} {{ inst[2] }}</option>
+             {% endfor %}  
+         
+         </select>
+         
+         <input type="text" id="instructor" name="instructor" value="{% for ca in datosInst %}{{ ca[0] }} - {{ ca[1] }} {{ ca[2] }}{% endfor %}"><br><br>
+         
+      
+       <!--  Alumnos -->
+       <label for="lname">Alumnos:</label><br>
+       <select name="alumnos" id="alumnoSelect">
+           <option value="{{ cursada[3] }}">Seleccione el Alumno</option> 
+       
+           {% for alum in alumno %}
+           <option value="{{ alum[0] }}"> {{ alum[0] }} - {{ alum[1] }} {{ alum[2] }}</option>
+           {% endfor %}  
+       
+       </select>
+       
+       <input type="text" id="alumnos" name="alumnos" value="{% for ca in datosAlum %}{{ ca[0] }} - {{ ca[1] }} {{ ca[2] }}{% endfor %}"><br><br>
+       
+       
+         <!-- BOTON ENVIAR-->
+        <input class="boton" type="submit" value="Actualizar">
+        <br><br>
+        <a class="btn" href="/index">VOLVER</a>
+    </form>
+    
+       
+</body>
+ 
+    {%extends"footer.html"%}
+   
+
+</html>

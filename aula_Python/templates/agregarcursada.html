@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Cursada</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    <title>Formulario de Cursada</title>
+   
+    <script>
+        function validateForm(event) {
+            // Obtener los elementos del formulario
+            const curso = document.getElementById('curso');
+            const instructor = document.getElementById('instructor');
+            const alumnos = document.getElementById('alumnos');
+
+            // Validar que no tengan el valor por defecto
+            if (curso.value === "" || curso.value === "datos_erroneo") {
+                alert("Por favor, seleccione un curso válido.");
+                curso.focus();
+                event.preventDefault(); // Evita que se envíe el formulario
+                return false;
+            }
+
+            if (instructor.value === "" || instructor.value === "datos_erroneo") {
+                alert("Por favor, seleccione un instructor válido.");
+                instructor.focus();
+                event.preventDefault();
+                return false;
+            }
+
+            if (alumnos.value === "" || alumnos.value === "datos_erroneo") {
+                alert("Por favor, seleccione un alumno válido.");
+                alumnos.focus();
+                event.preventDefault();
+                return false;
+            }
+
+            return true; // Permite que el formulario se envíe
+        }
+    </script>
+</head>
+
+<body>
+
+<form action="" method="POST" onsubmit="validateForm(event)">
+    <label for="id_cursada">Id Cursada - Asignada</label><br>
+    <input type="text" id="id_cursada" name="id_cursada" value="{% for ca in datoMaxId %}{{ ca[0] }}{% endfor %}"><br><br>
+
+    <!-- Curso -->
+    <label for="curso">Nro de Curso registrado:</label><br>
+    <select name="curso" id="curso">
+        <option value="datos_erroneo" selected>Seleccione el Curso</option>
+        {% for elcurs in elcurso %}
+        <option value="{{ elcurs[0] }}">
+            {{ elcurs[0] }} - {{ elcurs[1] }} {{ elcurs[2] }}
+        </option>
+        {% endfor %}  
+    </select>
+    <br><br>
+
+    <!-- Instructor -->
+    <label for="instructor">Dni de Instructor registrado:</label><br>
+    <select name="instructor" id="instructor">
+        <option value="datos_erroneo" selected>Seleccione el Instructor</option>
+        {% for inst in instructor %}
+        <option value="{{ inst[0] }}">
+            {{ inst[0] }} - {{ inst[1] }} {{ inst[2] }}
+        </option>
+        {% endfor %}
+    </select>
+    <br><br>
+
+    <!-- Alumnos -->
+    <label for="alumnos">Dni de Alumno registrado:</label><br>
+    <select name="alumnos" id="alumnos">
+        <option value="datos_erroneo" selected>Seleccione el Alumno</option>
+        {% for alum in alumno %}
+        <option value="{{ alum[0] }}">
+            {{ alum[0] }} - {{ alum[1] }} {{ alum[2] }}
+        </option>
+        {% endfor %} 
+    </select>
+    <br><br>
+
+    <input class="boton" type="submit" value="Agregar"><br><br>
+    <a class="btn" href="/index">VOLVER</a>
+</form>
+
+</body>
+{%extends"footer.html"%}
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+    
+    <title>Agregar Alumnos</title>
+    <script>
+        
+        let existingDNIs = [
+            {% for al in alumnos %}
+                "{{ al[0] }}",
+            {% endfor %}
+        ];
+
+        function validateDNI(event) {
+            const dniField = document.getElementById('dni');
+            const dni = dniField.value.trim();
+
+            if (existingDNIs.includes(dni)) {
+                alert("El DNI ingresado ya existe. Por favor, ingrese un DNI diferente.");
+                dniField.focus();
+                event.preventDefault(); // Evita que se envíe el formulario
+                return false;
+            }
+
+            return true; // Permite que el formulario se envíe
+        }
+    </script>
+</head>
+<body>
+    <div class="titulos">
+        <h1>AGREGAR ALUMNOS</h1>
+    </div>
+
+    <form action="/agregar" method="POST" onsubmit="return validateDNI(event)">
+        <!-- DNI alumno  -->
+        <label for="fname">DNI:</label><br>
+        <input type="text" id="dni" name="dni" value="" maxlength="8" required><br><br>
+       
+        <!-- Nombre Alumno -->
+        <label for="lname">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre" value="" maxlength="20" required><br><br>
+        
+        <!-- Apellido alumno -->
+        <label for="lname">Apellido:</label><br>
+        <input type="text" id="apellido" name="apellido" value="" maxlength="20" required><br><br>
+        
+        <!-- DIRECCION-->
+        <label for="lname">Dirección:</label><br>
+        <select name="direccion" id="">
+            <option value="">Seleccione direccion</option>
+            {% for di in direccion %}
+            <option value="{{ di[0] }}"> {{ di[0] }} {{ di[1] }}</option>
+            {% endfor %}
+        </select>
+        <input type="text" id="xxdireccion" name="direccion" value=""><br><br>
+        
+        <!-- EDUCACION-->
+        <label for="lname">Educacion:</label><br>
+        <select name="educacion" id="">
+            <option value="">Seleccione educacion</option>
+            {% for ed in educacion %}
+            <option value="{{ ed[0] }}"> {{ ed[0] }} {{ ed[1] }}</option>
+            {% endfor %}
+        </select> 
+        <input type="text" id="xxeducacion" name="educacion" value=""><br><br>
+        
+        <!-- ENVIO-->
+        <input class="boton" type="submit" value="Agregar"><br><br>
+        <a class="btn" href="/index">VOLVER</a>
+    </form>
+</body>
+{%extends"footer.html"%}
+</html>

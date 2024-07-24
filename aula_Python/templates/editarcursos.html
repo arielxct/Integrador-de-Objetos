@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Instructor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+
+      
+</head>
+
+
+
+<body class="editar_curso">
+    <header>
+        <div class="logo">
+           
+            </div>
+        <nav>
+
+            <ul>
+            <li><a href="/index">Inicio</a></li>
+            <li><a href="/listar">ABM de Alumnos</a></li>
+            <li><a href="/listarinst">ABM de Instructores</a></li>
+            <li><a href="/listarcursos">ABM de Cursos</a></li>
+            <li><a href="/listarcursada">ABM de Cursada</a></li>
+                
+                
+            </ul>
+        </nav>
+    </header>
+
+    <div class="titulos">
+        <h1>EDITAR CURSOS</h1>
+    </div>
+    <form action="/actualizarcursos/{{cursos.0}}" method="POST">
+        <!-- faltaría agregar la ruta en action "/agregar" -->
+        <label for="fname">Codigo:</label><br>
+        <input type="text" id="codigo" name="codigo" value="{{cursos.0}}" maxlength="11" required><br><br>
+        <label for="lname">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre" value="{{cursos.1}}" maxlength="45" required><br><br>
+        <label for="lname">Apellido:</label><br>
+        <input type="text" id="descripcion" name="descripcion" value="{{cursos.2}}" maxlength="45" required><br><br>
+       
+
+       
+        
+         <!-- BOTON ENVIAR-->
+        <input class="boton" type="submit" value="Actualizar">
+        <br><br>
+        <a class="btn" href="/index">VOLVER</a>
+    </form>
+    
+       
+</body>
+ <!--
+    <footer>
+        <p>&copy; 2024 Universidad Tecnológica de Software Avanzado (UTSA). Todos los derechos reservados.</p>
+        
+    </footer>
+    -->
+    {%extends"footer.html"%}
+   
+
+</html>

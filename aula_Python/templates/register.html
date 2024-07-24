@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<header>
+    <div class="logo">
+        <img src="static/image/web-logo.png" alt="Codo a Codo" class="logo">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="">Inicio</a></li>
+            <li><a href="">ABM de Alumnos</a></li>
+            <li><a href="">ABM de Instructores</a></li>
+            <li><a href="">ABM de Cursos</a></li>
+            <li><a href="">ABM de Cursada</a></li>
+            
+        </ul>
+    </nav>
+</header>
+<body>
+    <main class="register">
+        <section class="register">
+            <h2>Registro de Usuarios</h2>
+            <form method="POST" action="{{ url_for('register') }}">
+                <label for="username">Username:</label>
+                <input type="text" name="username" required>
+                <label for="email">Email:</label>
+                <input type="email" name="email" required>
+                <label for="password">Password:</label>
+                <input type="password" name="password" required>
+                <button type="submit">Registrese</button>
+            </form>
+            <a href="{{ url_for('login') }}">Login</a>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% for category, message in messages %}
+                    <div class="{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endwith %}
+        </section>
+    </main>
+{%extends"footer.html"%}
+</body>
+</html>

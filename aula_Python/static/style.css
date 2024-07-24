@@ -1,0 +1,544 @@
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: aquamarine;
+  }
+  
+  form.cursada {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgb(111, 226, 122);
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+  
+  /*  agregar.html */
+  .boton {
+    background-color: #4CAF50; /* Green color */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .boton:hover {
+    background-color: #45a049; 
+  }
+  .itemBuscar{
+    background-color: deepskyblue;
+  }
+  
+  /*  listar.html */
+  table {
+    border-collapse: collapse;
+    width: 70%;
+    margin: 0 auto;
+    border: 2px solid rgb(10, 4, 117);
+    background-color: bisque;
+
+  }
+  
+  
+  th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #50cfe0;
+    font-weight: bold;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #fafafa;
+    
+   
+   
+  }
+  
+  #boton-agregar {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .btn {
+    background-color: #007bff; 
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .btnVolver {
+    background-color: #37d50f; 
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .btnEditar {
+    background-color: #120fd5; 
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .btnEliminar {
+    background-color: #e6072c; 
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .btn:hover {
+    background-color: #0062cc; 
+  }
+  
+  /*  editar.html (agregar.html) */
+  .boton {
+    background-color: #4CAF50; 
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .boton:hover {
+    background-color: #45a049; 
+  }
+  .titulos {
+    color: #0062cc;
+    text-align: center;
+    border: #0062cc;
+    border-radius: 5%;
+    
+  }
+  .titulosBuscar {
+    color: #141511;
+    text-align: center;
+    border: #0062cc;
+    border-radius: 5%;
+    font-size: small;
+    
+  }
+  .titulosIndex {
+    color: #cc008f;
+    text-align: center;
+    border:black;
+    border-radius: 5%;
+   /* font-size: 1.5em; */
+    margin-top: 0%;
+    margin-bottom: 0%;
+    
+  }
+  .titulo_register{
+    color: #1150a3;
+    text-align: center;
+    border: #0062cc;
+    border-radius: 5%;
+    font-size: 50px;
+    display: flex;
+    flex-direction: center;
+    
+
+  }
+  section.logeo{
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    
+    display: grid;
+    flex-direction: center;
+    align-content: stretch;
+    justify-content: space-evenly;
+    justify-items: center;
+  }
+
+ 
+
+  .titulo_register{
+    text-align: center;
+    color: #e6072c;
+    text-align: center;
+    border: #0062cc;
+    border-radius: 5%;
+    font-size: 30px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+    
+  .mensajeBusqueda {
+    color: #1a1a18;
+    text-align: center;
+    font-size: 1.8em;
+    border: rgb(153, 229, 20);
+    border-radius: 5%;
+  }
+  a {
+    text-align: center;
+    
+  }
+  #xxdireccion {
+    display: none; 
+  }
+#xxeducacion {
+  display: none; 
+}
+.buscaDni{
+  display: flex;
+    flex-direction: row;
+    width: 400px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgb(52, 228, 16);
+}
+.buscaNombre{
+  display: flex;
+    flex-direction: row;
+    width: 400px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgb(127, 219, 255);
+}
+.buscaApellido{
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgb(221, 229, 109);
+}
+
+.buscadores{
+  display: flex;
+  align-content: center;
+  flex-direction: row;
+  width: 400px;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+.ordeno_cursada{
+  display: flex;
+  flex-direction: row;
+  width: 250px;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgb(235, 238, 43);
+}
+
+
+
+
+/* agregado */
+body {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  width: auto;
+ 
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  
+  flex-wrap: nowrap;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #b6d0dd;
+ 
+
+}
+body.alumnos {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #56d2a4;
+}
+body.editar_alumno {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #56d2a4;
+}
+body.instructores {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #6eea89;
+}
+body.editar_instructor {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #6eea89;
+}
+body.listar_cursos {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #b8da11;
+}
+body.editar_curso {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #b8da11;
+}
+body.listar_cursada {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #6bd8e6;
+}
+body.editar_cursada {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #6bd8e6;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+
+  
+}
+
+header .logo {
+  float: left;
+  margin-left: 20px;
+}
+
+header .logo img {
+  width: 50px;
+}
+
+nav {
+  float: center;
+  margin-right: 20px;
+  font-size: medium;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+nav ul li a:hover {
+  background-color: #ddc61d;
+  border-radius: 5px;
+}
+
+main {
+  padding: 20px;
+  background-color: #fff;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+ 
+    background-image: url("/static/image/ba11290x780barro.png"); 
+   
+    height: 745px; 
+}
+.login{
+  padding: 20px;
+  background-color: #fff;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+ 
+    background-image: url("/static/image/ba2.jpg"); 
+   
+    height: 745px;
+
+}
+.register{
+  padding: 20px;
+  background-color: #fff;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+ 
+    background-image: url("/static/image/obelisco.jpg"); 
+   
+    height: 745px;
+
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+section h2 {
+  color: #333;
+}
+
+section p {
+  color: #666;
+}
+
+footer {
+  text-align: center;
+  padding: 10px 0;
+  background-color: #333;
+  color: #fff;
+  
+  width: 100%;
+  bottom: 0;
+}
+
+.botones_volver_agregar{
+  display: flex;
+  align-content: center;
+  flex-direction: row;
+  width: 400px;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  
+  flex-wrap: nowrap;
+  justify-content: center;
+
+}
+
+/* AGREGO A PAGINA INDEX ------------------------*/
+
+
+   .tres_imagenes{
+    
+    background-color: none;
+    
+   
+      }
+
+    .alineo_tres_imagenes{
+        display: flex;
+        justify-content: center;
+       
+    }
+    
+   .tres_fotos{
+   
+    width: 70%;
+   }
+   
+
+   .card-group{
+    padding-left: 20px;
+    padding-left: 20px;
+    display: flex;
+    justify-content: center;
+    width:20%,
+    
+   }
+
+   .card{
+    padding: 20px;
+   
+   }
+
+   
+   .alineo_botes_y_texto{
+    display: block;
+    justify-content: left;
+    text-align: initial; 
+    
+   }
+
+   .card-title{
+    font-size: 18px;
+    
+   color: white;
+   
+   }
+   .card-text{
+    font-size: 16px;
+    
+   color: white;
+   
+   }
+   
+
+   img.card-img-top {
+    width: 100%;
+}
+
+  /*  MMMMMMMMMMMMMM fin MMMMMMMMMMMMMMMMMMMMMMMMMMM*/
+
+/* FIN DE AGREGADO A PAGINA INDEX ------------*/
